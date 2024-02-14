@@ -135,7 +135,7 @@ export default function RegisterForm() {
         </div>
         <p className="text text-center">
           If you have accout. Go to <a className="login underline text-red-700" href="#">
-          <Link to='/'>Login</Link>
+          <Link to='/login'>Login</Link>
           </a>
         </p>
         <div className="flex gap-10 justify-center">

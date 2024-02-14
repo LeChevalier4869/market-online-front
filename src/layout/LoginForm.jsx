@@ -9,6 +9,7 @@ export default function LoginForm() {
     username: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const hdlChange = e => {
     setInput( prv => ({ ...prv, [e.target.name] : e.target.value }));
@@ -29,6 +30,7 @@ export default function LoginForm() {
       });
       console.log(result1.data);
       setUser(result1.data);
+      navigate('/');
     } catch (err) {
       console.log(err.message);
     }

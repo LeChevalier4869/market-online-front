@@ -13,7 +13,8 @@ const guestRouter = createBrowserRouter([
           <Outlet />
         </>,
         children: [
-          { index: true, element: <LoginForm /> },
+          { index: true, element: <UserHome /> },
+          { path: '/login', element: <LoginForm /> },
           { path: '/register', element: <RegisterForm />}
         ]
       }
@@ -27,7 +28,8 @@ const userRouter = createBrowserRouter([
           <Outlet />
         </>,
         children : [
-          { index: true, element: <UserHome /> }
+          { index: true, element: <UserHome /> },
+          { path: true? '/login':'/', element: <UserHome /> },
         ]
       }
 ]);
