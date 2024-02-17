@@ -1,4 +1,4 @@
-import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function CategoryCard(props) {
     const { el } = props;
@@ -7,7 +7,7 @@ export default function CategoryCard(props) {
         <div className="">
             <div className="card-body">
                 <div className="flex">
-                    <a href="#" className="text text-sm size-2 focus:text-lime-300">{el.name}</a>
+                    <Link to={`/category/${el.name}`} className="text text-sm size-2 hover:text-lime-300">{el.name}</Link>
                 </div>
             </div>
         </div>

@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom'
 
-export default function ProductCard(props) {
-    const { el } = props;
+export default function ProductCardAdmin(props) {
+    const { el, openModalUD } = props;
 
     return (
         <div className="">
             <div className="card-body">
-                    <Link to={`/product/${el.id}`} className="text hover:text-lime-300">
+                    <Link to={`#`} onClick={() => openModalUD(el.id)} className="text hover:text-lime-300">
                         <div className="border flex flex-col gap-2 bg-zinc-700 w-[130px]
                             h-[190px] items-center shadow shadow-red-600
                         ">

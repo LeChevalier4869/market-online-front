@@ -2,21 +2,22 @@ import axios from "axios"
 import { useEffect, useState } from "react"
 import ProductCard from "../components/ProductCard";
 import CategoryCard from "../components/CategoryCard";
+import useProduct from '../hooks/useProduct'
 
 export default function UserHome() {
-
-  const [products, setProducts] = useState([]);
+  const { product } = useProduct();
+  //const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
   const [trigger, setTrigger] = useState(false);
 
   useEffect(() => {
     const run = async () => {
-      const productLanding = await axios.get('http://127.0.0.1:8000/product/landing');
-      console.log(productLanding.data);
-      setProducts(productLanding.data.products);
+      //const productLanding = await axios.get('http://127.0.0.1:8000/product/landing');
+      //console.log(productLanding.data);
+      //setProducts(productLanding.data.products);
 
       const categoryLanding = await axios.get('http://127.0.0.1:8000/category/landing');
-      console.log(categoryLanding.data);
+      //console.log(categoryLanding.data);
       setCategory(categoryLanding.data.categories);
     };
     run();
@@ -33,6 +34,7 @@ export default function UserHome() {
             <CategoryCard
               key={el.id}
               el={el}
+              product={product}
               setTrigger={setTrigger}
             />
           ))
@@ -43,13 +45,16 @@ export default function UserHome() {
         <h2>product landing</h2>
         <div className="flex">
         {
-          products.map(el => (
-            <ProductCard 
-              key={el.id}
-              el={el}
-              setTrigger={setTrigger}
-            />
-          ))
+          // console.log(product.products)
+          product.products.map(el => {
+            return (
+              <ProductCard 
+                key={el.id}
+                el={el}
+                setTrigger={setTrigger}
+              />
+            )
+          })
         }
         </div>
       </div>

@@ -11,7 +11,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen max-w-[100vw] box-border">
       <AppRouter />
     </div>
   );
