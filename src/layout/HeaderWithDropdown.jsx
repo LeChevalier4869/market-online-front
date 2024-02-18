@@ -31,7 +31,7 @@ export default function Header() {
       <div className="flex-0 absolute top-3 left-3">
         <Link to='/' className="btn btn-ghost text-xl">AKA</Link>
       </div>
-      <div className="border border-green-400 absolute">
+      <div className="absolute">
         <input
           type="text"
           placeholder="Search"

@@ -7,16 +7,18 @@ export default function Modal(props) {
     name: "",
     price: "",
     detail: "",
+    stock: "",
+    unit: "",
     categoryId: "",
     brandId: "",
-    images: null
+    images: null,
   });
 
   const hdlChange = (e) => {
     setInput((prv) => ({ ...prv, [e.target.name]: e.target.value }));
   };
 
-  const handleImageChange = (e) => {
+  const hdlImageChange = (e) => {
     setInput((prev) => ({ ...prev, images: e.target.files[0] }));
   };
 
@@ -28,6 +30,8 @@ export default function Modal(props) {
       formData.append("name", input.name);
       formData.append("price", input.price);
       formData.append("detail", input.detail);
+      formData.append("stock", input.stock);
+      formData.append("unit", input.unit);
       formData.append("categoryId", input.categoryId);
       formData.append("brandId", input.brandId);
       formData.append("images", input.images);
@@ -37,10 +41,37 @@ export default function Modal(props) {
       const rs = await axios.post(
         "http://127.0.0.1:8000/admin/product",
         formData,
-        { headers: { Authorization: `Bearer ${token}`, "Content-Type": "multipart/form-data", } }
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       console.log(rs.data);
       alert("Create new product ok!");
+      closeModalAdd();
+      window.location.reload();
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const hdlDelete = async (e) => {
+    try {
+      e.stopPropagation();
+      if (!confirm(`Delete ${el.name} ?`)) {
+        return;
+      }
+      const token = localStorage.getItem("token");
+      let rs = await axios.delete(
+        `http://127.0.0.1:8000/admin/product/${el.id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+
+      console.log(rs);
+      closeModalUD();
+      window.location.reload();
     } catch (err) {
       console.log(err.message);
     }
@@ -53,10 +84,7 @@ export default function Modal(props) {
         <div className="modal-box">
           <h3 className="font-bold text-lg">Create new product</h3>
           <div className="">
-            <form
-              className="flex flex-col gap-5"
-              method="dialog"
-            >
+            <form className="flex flex-col gap-5" method="dialog">
               <div className="">
                 <input
                   placeholder="name"
@@ -87,6 +115,24 @@ export default function Modal(props) {
               </div>
               <div className="">
                 <input
+                  placeholder="stock"
+                  type="text"
+                  className="input input-bordered w-full max-w-xs"
+                  name="stock"
+                  value={input.stock}
+                  onChange={hdlChange}
+                />
+                <input
+                  placeholder="unit"
+                  type="text"
+                  className="input input-bordered w-full max-w-xs"
+                  name="unit"
+                  value={input.unit}
+                  onChange={hdlChange}
+                />
+              </div>
+              <div className="">
+                <input
                   placeholder="catedory id"
                   type="text"
                   className="input input-bordered w-full max-w-xs"
@@ -109,12 +155,16 @@ export default function Modal(props) {
                   className="file-input file-input-bordered file-input-info w-full max-w-xs"
                   name="images"
                   accept="images/*"
-                  onChange={handleImageChange}
+                  onChange={hdlImageChange}
                 />
               </div>
               <div className="flex gap-5 justify-end">
-                <button type="submit" className="btn" onClick={hdlSubmit}>Confirm</button>
-                <button className="btn" onClick={closeModalAdd}>Cancel</button>
+                <button type="submit" className="btn" onClick={hdlSubmit}>
+                  Confirm
+                </button>
+                <button className="btn" onClick={closeModalAdd}>
+                  Cancel
+                </button>
               </div>
             </form>
           </div>
@@ -124,13 +174,34 @@ export default function Modal(props) {
       {/* Update and Delete */}
       <dialog id="UD_product" className="modal">
         <div className="modal-box">
-          <h3 className="font-bold text-lg">{el?.name}</h3>
-          <div className="">{JSON.stringify(el)}</div>
-          <div className="modal-action">
-            <form method="dialog">
-              {/* if there is a button in form, it will close the modal */}
-              <button className="btn" onClick={closeModalUD}>Close</button>
-            </form>
+          <h3 className="font-bold text-lg mb-5">{el?.name}</h3>
+          <div className="flex justify-around">
+            <div className="">
+              {el?.product_imgs?.map((img, index) => (
+                <img
+                  key={index}
+                  src={img.url}
+                  alt={`Product Image ${index + 1}`}
+                  className="size w-[130px] h-28 mb-5"
+                />
+              ))}
+            </div>
+            <div className="text text-start">
+              <p>price: ${el?.price}</p>
+              <p>detial: {el?.detail}</p>
+              <p>stock: {el?.stock}</p>
+              <p>unit: {el?.unit}</p>
+            </div>
+          </div>
+          <div className="flex justify-around">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn">Update</button>
+            <button className="btn" onClick={hdlDelete}>
+              Delete
+            </button>
+            <button className="btn" onClick={closeModalUD}>
+              Cancel
+            </button>
           </div>
         </div>
       </dialog>

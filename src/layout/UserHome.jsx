@@ -25,9 +25,11 @@ export default function UserHome() {
 
   return (
     <div className="home text-center flex flex-col items-center gap-10">
-      Product
-      <div className="border border-red-400 min-h-56 min-w-[800px] w-[1024px]">
-        <h2>category landing</h2>
+      <h1 className="text text-xl mt-5">Product</h1>
+      <h2>category landing</h2>
+      <div className="border border-red-400 min-h-56 min-w-[800px] w-[940px]
+        flex flex-wrap
+      ">
         <div className="flex">
         {
           category.map(el => (
@@ -41,12 +43,15 @@ export default function UserHome() {
         }
         </div>
       </div>
-      <div className="border border-lime-400 min-h-96 min-w-[800px] w-[1024px]">
-        <h2>product landing</h2>
-        <div className="flex">
+
+      <h2>product landing</h2>
+
+      <div className="border border-lime-400 min-h-96 min-w-[800px] w-[940px]
+      ">
+        <div className="flex flex-wrap">
         {
           // console.log(product.products)
-          product.products.map(el => {
+          product.products?.map(el => {
             return (
               <ProductCard 
                 key={el.id}

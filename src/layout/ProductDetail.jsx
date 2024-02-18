@@ -1,28 +1,83 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios'
+import React from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function ProductDetail() {
-    const [productDetail, setProductDetail] = useState([]);
-    const [trigger, setTrigger] = useState(false);
-    const { productId } = useParams();
+  const [productDetail, setProductDetail] = useState([]);
+  const [trigger, setTrigger] = useState(false);
+  const { productId } = useParams();
+  const product = productDetail?.product;
 
-    useEffect(() => {
-        const run =  async () => {
-            const productById = await axios.get(`http://127.0.0.1:8000/product/${productId}`);
-            console.log(productById.data);
-            setProductDetail(productById.data);
-        };
-        run();
-    }, [trigger]);
+  useEffect(() => {
+    const run = async () => {
+      const productById = await axios.get(
+        `http://127.0.0.1:8000/product/${productId}`
+      );
+      console.log(productById.data);
+      setProductDetail(productById.data);
+    };
+    run();
+  }, [trigger]);
 
   return (
     <>
-        <div className='text text-center mt-2 text-xl'>ProductDetail</div>
-        <div className="border border-red-400 flex flex-col">
-            <h3 className='text text-center'>{ JSON.stringify(productDetail) }</h3>
+      <div className="text text-center mt-5 text-xl">ProductDetail</div>
+      <div
+        className="mt-5 flex
+        justify-center
+      "
+      >
+        <div
+          className="border border-green-500 my-5 mx-5 min-w-[800px] min-h-[600px]
+            w-[975px] h-[700px] flex justify-around p-5
+        "
+        >
+          <div className="img ">
+            {product?.product_imgs?.map((img, index) => (
+              <img
+                key={index}
+                src={img.url}
+                alt={`Product Image ${index + 1}`}
+                className="size w-[400px] h-[400px]"
+              />
+            ))}
+            <div className="text">
+              <h4 className="text text-xl text-center mt-5">Details</h4>
+              <p className="text m-3">{product?.detail}</p>
+            </div>
+          </div>
+          <div
+            className="
+             min-w-[500px] min-h-[300px] h-[400px]
+          "
+          >
+            {/* <h3 className="text text-center text-wrap">
+                {JSON.stringify(productDetail)}
+              </h3> */}
+            <div className="
+                min-w-[500px] min-h-[300px] h-[400px]
+                flex flex-col gap-8
+            ">
+              <h2 className="text text-center text-2xl">{product?.name}</h2>
+              <p className="text-xl">Price: ${product?.price}</p>
+              <p className="text-xl">Stock: {product?.stock}</p>
+              <p className="text-xl">Unit: {product?.unit}</p>
+              <p className="text-xl">Category: {product?.category?.name}</p>
+              <p className="text-xl">Brand: {product?.brand?.name}</p>
+            </div>
+
+            <div className="
+                min-w-[500px] min-h-[300px] h-[300px]
+                flex justify-end items-end p-[60px]
+                gap-10
+            ">
+              <button class="btn btn-outline btn-info">Add to cart</button>
+              <button class="btn btn-outline btn-success">Buy now</button>
+            </div>
+          </div>
         </div>
+      </div>
     </>
-  )
+  );
 }

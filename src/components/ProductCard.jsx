@@ -7,8 +7,8 @@ export default function ProductCard(props) {
         <div className="">
             <div className="card-body">
                     <Link to={`/product/${el.id}`} className="text hover:text-lime-300">
-                        <div className="border flex flex-col gap-2 bg-zinc-700 w-[130px]
-                            h-[190px] items-center shadow shadow-red-600
+                        <div className="border flex flex-col gap-2 bg-zinc-700 w-[170px]
+                            h-[250px] items-center shadow shadow-red-600
                         ">
                         <div className="">
                             {
@@ -23,7 +23,7 @@ export default function ProductCard(props) {
                             }
                         </div>
                         <div className="flex flex-col gap-1">
-                            <p className="text text-xl">{el.name}</p>
+                            <p className="text text-xl whitespace-nowrap overflow-x-hidden text-ellipsis">{el.name}</p>
                             <span className="">${el.price}</span>
                         </div>
                     </div>
