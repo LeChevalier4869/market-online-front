@@ -51,7 +51,7 @@ export default function UserHome() {
         <div className="flex flex-wrap">
         {
           // console.log(product.products)
-          product.products?.map(el => {
+          product?.products.map(el => {
             return (
               <ProductCard 
                 key={el.id}

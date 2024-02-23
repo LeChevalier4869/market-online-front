@@ -8,6 +8,10 @@ import UserHome from "../layout/UserHome"
 import ProductDetail from "../layout/ProductDetail"
 import ProductLanding from "../layout/ProductLanding"
 import AdminProduct from "../layout/AdminProduct"
+import FavoriteProduct from '../layout/FavoriteProduct'
+import Cart from '../layout/Cart'
+import ProfileForm from "../layout/ProfileForm"
+import Order from '../layout/Order'
 
 const guestRouter = createBrowserRouter([
     {
@@ -38,6 +42,10 @@ const userRouter = createBrowserRouter([
           { path: true? '/login':'/', element: <UserHome /> },
           { path: '/product/:productId', element: <ProductDetail /> },
           { path: '/category/:categoryName', element: <ProductLanding /> },
+          { path: '/favorite', element: <FavoriteProduct /> },
+          { path: '/cart', element: <Cart /> },
+          { path: '/profile', element: <ProfileForm /> },
+          { path: '/order', element: <Order /> },
         ]
       }
 ]);
@@ -55,6 +63,7 @@ const adminRouter = createBrowserRouter([
         { path: '/product/:productId', element: <ProductDetail /> },
         { path: '/category/:categoryName', element: <ProductLanding /> },
         { path: '/myproduct', element: <AdminProduct /> },
+        { path: '/profile', element: <ProfileForm /> },
       ]
     }
 ]);

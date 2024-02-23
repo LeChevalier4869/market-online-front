@@ -22,8 +22,8 @@ export default function ProductCard(props) {
                                 ))
                             }
                         </div>
-                        <div className="flex flex-col gap-1">
-                            <p className="text text-xl whitespace-nowrap overflow-x-hidden text-ellipsis">{el.name}</p>
+                        <div className="flex flex-col gap-1 w-[170px] px-2">
+                            <p className="text text-xl hover:overflow-x-visible hover:whitespace-normal whitespace-nowrap overflow-x-hidden text-ellipsis">{el.name}</p>
                             <span className="">${el.price}</span>
                         </div>
                     </div>
