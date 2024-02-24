@@ -2,8 +2,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Modal(props) {
-  const { el, closeModalAdd, closeModalMM, openModalEdit, closeModalEdit, setTrigger, trigger } =
-    props;
+  const { 
+    el, 
+    closeModalAdd, 
+    closeModalMM, 
+    openModalEdit, 
+    closeModalEdit, 
+    setTrigger, 
+    trigger 
+  } = props;
+  
   const [input, setInput] = useState({
     name: "",
     price: "",
