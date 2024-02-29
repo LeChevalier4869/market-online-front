@@ -32,7 +32,7 @@ export default function Address() {
       </div>
       <div
         className="flex justify-center m-5 w-[808px] h-[360px]
-        border border-yellow-500 p-3 whitespace-wrap overflow-scroll
+        border border-yellow-500 p-3 whitespace-wrap overflow-y-auto
         px-2 "
       >
         {/* Open Modal */}

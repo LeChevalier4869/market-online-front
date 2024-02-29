@@ -47,7 +47,7 @@ export default function UserHome() {
       <h2>product landing</h2>
 
       <div className="border border-lime-400 min-h-96 min-w-[800px] w-[940px]
-      ">
+       mb-5 ">
         <div className="flex flex-wrap">
         {
           // console.log(product.products)

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function RegisterForm() {
   const [input, setInput] = useState({
@@ -12,6 +12,8 @@ export default function RegisterForm() {
     confirmPassword: "",
     email: "",
   });
+
+  const navigate = useNavigate();
 
   const hdlChange = (e) => {
     setInput((prv) => ({ ...prv, [e.target.name]: e.target.value }));
@@ -31,6 +33,7 @@ export default function RegisterForm() {
       if (rs.status === 200) {
         alert("Register Successful");
       }
+      navigate('/login');
     } catch (err) {
       console.log(err.message);
     }

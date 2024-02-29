@@ -72,8 +72,8 @@ export default function ProductDetail() {
                 flex justify-end items-end p-[60px]
                 gap-10
             ">
-              <button class="btn btn-outline btn-info">Add to cart</button>
-              <button class="btn btn-outline btn-success">Buy now</button>
+              <button className="btn btn-outline btn-info">Add to cart</button>
+              <button className="btn btn-outline btn-success">Buy now</button>
             </div>
           </div>
         </div>

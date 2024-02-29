@@ -24,13 +24,12 @@ export default function Header() {
   const navigate = useNavigate();
 
   const hdlGoHome = () => {
-    document.getElementById('details').closest()
     navigate("/");
+    document.getElementById('details').closest()
   };
 
   const hdlLogout = () => {
     logout();
-    document.getElementById('details').closest()
     navigate("/");
   };
 
@@ -83,9 +82,13 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link to="#" onClick={hdlOrder}>
-                      Order
-                    </Link>
+                    { user?.role !== 'ADMIN' 
+                    ?
+                      <Link to="#" onClick={hdlOrder}>
+                        Order
+                      </Link>
+                    : null
+                    }
                   </li>
                   <li>
                     <Link to="#" onClick={hdlLogout}>

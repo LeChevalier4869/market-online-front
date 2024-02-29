@@ -33,6 +33,16 @@ export default function Modal(props) {
     images: null,
   });
 
+  const category = [
+    { value: true, text: "Yes" },
+    { value: false, text: "No" },
+  ];
+
+  const brand = [
+    { value: true, text: "Yes" },
+    { value: false, text: "No" },
+  ];
+
   useEffect(() => {
     try {
       const run = async () => {

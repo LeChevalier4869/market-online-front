@@ -28,8 +28,7 @@ export default function ProfileForm() {
   };
 
   return (
-    <div className="size w-screen h-screen">
-      <div className="">{JSON.stringify(user)}</div>
+    <div className="size">
       <h1 className="text text-center mt-5 text-3xl">{user.username}'s Proflie</h1>
       
       {/* layout left-right */}
@@ -37,7 +36,7 @@ export default function ProfileForm() {
         {/* layout left */}
         <div className="border border-blue-300 mt-5 w-[300px] flex flex-col justify-center items-center">
           <button onClick={hdlRequestInformation} className="infomation border border-red-500 mb-5 w-[150px] text-center p-3">
-              Information  
+            Information  
           </button>
           <button onClick={hdlRequestAccount} className="Account border border-red-500 mb-5 w-[150px] text-center p-3">
             Account
@@ -59,7 +58,7 @@ export default function ProfileForm() {
             ">
               {
                 trigger === 1
-                  ?  <Information />
+                  ?  <Information el={user} />
                   : trigger === 2
                       ? <Account />
                       : trigger === 3

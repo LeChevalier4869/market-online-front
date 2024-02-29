@@ -24,7 +24,7 @@ export default function ProductLanding() {
     <div className="text text-center">
       <h2 className="text text-xl mt-5">Product landing</h2>
       <div className="flex justify-center">
-        <div className="border border-lime-400 mt-5 min-h-96 min-w-[800px] w-[975px]">
+        <div className="border border-lime-400 mt-5 mb-5 min-h-96 min-w-[800px] w-[975px]">
           <div className="flex flex-wrap">
             {
               // console.log(product.products)

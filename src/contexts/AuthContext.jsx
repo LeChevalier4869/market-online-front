@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 function AuthContextProvider(props) {
     const [user, setUser] = useState(null);
+    const [userWithPass, setUserWithPass] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect( () => {
@@ -16,7 +17,14 @@ function AuthContextProvider(props) {
                 const result = await axios.get('http://127.0.0.1:8000/auth/me', {
                     headers: { Authorization : `Bearer ${token}` }
                 });
+                delete result.data.password;
+                //console.log(result.data);
                 setUser(result.data);
+
+                const resultWithPass = await axios.get('http://127.0.0.1:8000/auth/me', {
+                    headers: { Authorization : `Bearer ${token}` }
+                });
+                setUserWithPass(resultWithPass.data);
             } catch (err) {
                 console.log(err.message);
             } finally {
@@ -32,7 +40,7 @@ function AuthContextProvider(props) {
     };
 
     return (
-        <AuthContext.Provider value={ {user, setUser, loading, logout} }>
+        <AuthContext.Provider value={ {user, setUser, userWithPass, setUserWithPass, loading, logout} }>
             {props.children}
         </AuthContext.Provider>
     )

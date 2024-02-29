@@ -29,7 +29,7 @@ export default function AdminProduct() {
       <h2 className="text text-center text-xl">my Product</h2>
       <div className="text text-center flex justify-center mt-5">
         <div
-          className="border border-lime-400 min-h-96 min-w-[800px] w-[975px]
+          className="border border-lime-400 mb-5 min-h-96 min-w-[800px] w-[975px]
           flex flex-wrap
         "
         >
