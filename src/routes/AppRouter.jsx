@@ -64,6 +64,9 @@ const adminRouter = createBrowserRouter([
         { path: '/category/:categoryName', element: <ProductLanding /> },
         { path: '/myproduct', element: <AdminProduct /> },
         { path: '/profile', element: <ProfileForm /> },
+        { path: '/favorite', element: <FavoriteProduct /> },
+        { path: '/cart', element: <Cart /> },
+        { path: '/order', element: <Order /> },
       ]
     }
 ]);

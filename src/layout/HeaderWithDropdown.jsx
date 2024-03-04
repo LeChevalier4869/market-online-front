@@ -11,7 +11,10 @@ const userNav = [
   { to: "/cart", text: "Cart" },
 ];
 
-const adminNav = [{ to: "/myproduct", text: "My Product" }];
+const adminNav = [
+  { to: "/favorite", text: "Favorite" },
+  { to: "/cart", text: "Cart" },
+];
 
 export default function Header() {
   const { user, logout } = useAuth();
@@ -41,6 +44,11 @@ export default function Header() {
   const hdlOrder = () => {
     hdlCloseDetail();
     navigate("/order");
+  };
+
+  const hdlProductAdmin = () => {
+    hdlCloseDetail();
+    navigate("/myproduct");
   };
 
   const hdlCloseDetail = () => {
@@ -82,12 +90,14 @@ export default function Header() {
                     </Link>
                   </li>
                   <li>
-                    { user?.role !== 'ADMIN' 
-                    ?
+                    {user?.role !== 'ADMIN'
+                      ?
                       <Link to="#" onClick={hdlOrder}>
                         Order
                       </Link>
-                    : null
+                      : <Link to="#" onClick={hdlProductAdmin}>
+                        Product admin
+                      </Link>
                     }
                   </li>
                   <li>
